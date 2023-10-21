@@ -35,7 +35,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     const productCollection = client.db('productDB').collection('product')
 
     app.get('/products', async(req,res)=>{
@@ -51,15 +51,15 @@ async function run() {
   res.send(result);
     })
 
-    
+    // updated get
 app.get('/products/id/:id', async (req,res)=>{
   const id =req.params.id;
   const quary = {_id : new ObjectId(id)};
   const result = await productCollection.findOne(quary);
   res.send(result);
 })
-
-app.put('/products/id/:_id', async (req,res)=>{
+// updated data put
+app.put('/products/id/:id', async (req,res)=>{
   const id =req.params.id;
   const filter = {_id : new ObjectId(_id)};
   const options= {upsert: true};
